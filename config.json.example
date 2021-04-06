@@ -1,10 +1,10 @@
 {
-  "prefix": ".",
+  "prefix": "?",
   "botToken": "123",
   "modules": ["Utility", "Fun", "Games"],
-  "version": "3.0.0",
+  "version": "0.1.0",
   "versioninfo": "Cleaned up a bit behind the scenes, updated version info.",
-  "playing": "updated to v3!",
+  "playing": "under construction!",
   "channelReacts": [
     {
       "channel": "765306866506661898",
@@ -35,6 +35,6 @@
     "welcome": "765304484649762827"
   },
   "colors": {
-    "embedColor": "#C54646"
+    "embedColor": "#FF69B4"
   }
 }
