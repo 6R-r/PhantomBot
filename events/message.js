@@ -2,7 +2,6 @@ const config = require('../config.json');
 const afkAction = require('../eventActions/afkMessageCheckAction');
 const reactions = require('../eventActions/reactions');
 const cafeActions = require('../eventActions/cafeActions');
-const profanityActions = require('../eventActions/profanityActions');
 
 module.exports = async (client, message) => {
   if (!message.guild || message.author.bot) return;
@@ -17,13 +16,10 @@ module.exports = async (client, message) => {
       client.commands.get(client.aliases.get(command));
 
     if (commandfile) {
-      message.channel.startTyping();
       commandfile.execute(client, message, args); // Execute found command
-      message.channel.stopTyping();
     }
   }
   
-  profanityActions.checkForProfanity(client, message);
   // Handle greetings
   cafeActions.greetMorningOrNight(client, message);
   cafeActions.holidayReacts(client, message);
