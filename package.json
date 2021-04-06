@@ -1,7 +1,7 @@
 {
-  "name": "bartholomew",
-  "version": "2.0.0",
-  "description": "Bot designed for the Prayer Room Discord server.",
+  "name": "phantombot",
+  "version": "0.1.0",
+  "description": "Bot designed for the Zeldacord Discord server.",
   "main": "node bot.js",
   "engines": {
     "node": "14.15.3"
