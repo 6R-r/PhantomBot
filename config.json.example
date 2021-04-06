@@ -1,7 +1,7 @@
 {
   "prefix": "?",
   "botToken": "123",
-  "modules": ["Utility", "Fun", "Games"],
+  "modules": ["Utility", "Fun"],
   "version": "0.1.0",
   "versioninfo": "Cleaned up a bit behind the scenes, updated version info.",
   "playing": "under construction!",

@@ -7,19 +7,19 @@ const config = require('../config.json');
 module.exports.execute = async (client, message) => {
   let infoMessage = new Discord.MessageEmbed()
     .setColor(config.colors.embedColor)
-    .setTitle('Bartholomew')
+    .setTitle('Phantom')
     .setThumbnail(
-      'https://images-ext-1.discordapp.net/external/2soj2X2BPQkQsH-kOk_5GmgL9_KUvGcNdd2fcN1s7jo/%3Fsize%3D256/https/cdn.discordapp.com/avatars/693840044032786444/b2598077df8a48b63c9da434ba33aab2.png'
+      'https://cdn.discordapp.com/attachments/326804095073779712/829028266017816576/phantom.png'
     )
     .addField(
       'Description',
-      'A helpful guy from Habitica here to assist in everything you might need!'
+      'A fun and helpful custom bot made specifically for the Zeldacord.'
     )
     .addField('Version', version)
     .addField('Version Info', versioninfo)
     .addField(
       'GitHub',
-      'Want to help us develop Bartholomew? Check out the repo on GitHub! https://github.com/zmontgo/Bartholomew'
+      'Want to help me develop PhantomBot? Check out the repo on GitHub! https://github.com/zmontgo/PhantomBot'
     );
   return await message.channel.send(infoMessage);
 };
@@ -28,6 +28,6 @@ module.exports.config = {
   name: 'botinfo',
   aliases: ['bot', 'info', 'version'],
   module: 'Utility',
-  description: 'Learn more about Bartholomew.',
+  description: 'Learn more about Phantom.',
   usage: ['botinfo'],
 };

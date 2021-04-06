@@ -3,13 +3,13 @@ const Discord = require('discord.js');
 
 class deleteMessageActions {
 	static async sendMessageToModeration(client, message) {
-		const isBartholomewBot = message.author.id === client.user.id;
+		const isPhantomBot = message.author.id === client.user.id;
 
 		const isCommand = message.content.startsWith(config.prefix);
 
 		const isStaffAccountability = message.channel.id == config.channels.staffaccountability;
 	
-		if(!(isBartholomewBot || isCommand || isStaffAccountability)){
+		if(!(isPhantomBot || isCommand || isStaffAccountability)){
 			
 			let embed = new Discord.MessageEmbed()
 				.setTitle('Message Deleted')
