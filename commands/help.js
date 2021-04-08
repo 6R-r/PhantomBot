@@ -1,12 +1,7 @@
 const Discord = require('discord.js');
 const config = require('../config.json');
 const fs = require('fs');
-let prefix;
-if (fs.existsSync('../config.json')) {
-	prefix = require('../config.json').prefix;
-} else {
-	prefix = '.';
-}
+let prefix = config.prefix;
 
 function capitalizeFLetter(input) {
   return input[0].toUpperCase() + input.slice(1);
@@ -25,7 +20,7 @@ module.exports.execute = async (client, message, args) => {
       .setColor(config.colors.embedColor)
       .setTitle('List of available modules')
       .setDescription(
-        `Modules available in ${message.guild.name}. Use \`.help [module]\` for more about a specific module, or \`.help all\` for all commands.`
+        `Modules available in ${message.guild.name}. Use \`${prefix}help [module]\` for more about a specific module, or \`${prefix}help all\` for all commands.`
       );
     modules.forEach((module) => {
       modulelist = modulelist.concat(`${module}\n`);
