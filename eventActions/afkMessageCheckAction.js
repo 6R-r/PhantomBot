@@ -26,6 +26,10 @@ class afkMessageCheckAction {
     if (
       message.content.toLowerCase().indexOf('good') != -1 &&
       message.content.toLowerCase().indexOf('morning') != -1
+			(
+				message.content.toLowerCase().indexOf("qts") != -1 ||
+				message.content.toLowerCase().indexOf("gorls") != -1
+			)
     ) {
       const sender = message.author;
 

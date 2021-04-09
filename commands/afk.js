@@ -3,19 +3,6 @@ const Afks = require('../databaseFiles/connect.js').Afks;
 const config = require('../config.json');
 
 module.exports.execute = async (client, message, args) => {
-  try {
-    if (
-      message.content.toLowerCase().indexOf('good') != -1 &&
-      !message.content.toLowerCase().indexOf('night') != -1 &&
-      !message.content.toLowerCase().indexOf('guys') != -1
-    ) {
-      //pass
-    } else {
-      message.delete();
-    }
-  } catch (err) {
-    console.log('Delete error' + err);
-  }
 
   const sender = message.author;
 
