@@ -11,9 +11,6 @@ class cafeActions {
 				message.content.toLowerCase().indexOf("gorls") != -1
 			)
 		) {
-			client.commands
-				.get("afk")
-				.execute(client, message, ["Went to sleep.", "auto"]);
 			return await message.react(config.emotes.goodnight);
 		} else if (
 			message.content.toLowerCase().indexOf("good") != -1 &&
