@@ -4,7 +4,7 @@
   "modules": ["Utility", "Fun"],
   "version": "0.1.0",
   "versioninfo": "Cleaned up a bit behind the scenes, updated version info.",
-  "playing": "ready to $help!",
+  "playing": "ready to ?help",
   "channelReacts": [
     {
       "channel": "765306866506661898",
@@ -14,25 +14,20 @@
   "mongodbURI": "mongodb://localhost:27017",
   "mongodbDatabase": "ph-core",
   "channels": {
-    "welcome": "765304580161404938",
-    "logs": "765306671807332362",
-    "cafe": "765226048237076523",
-    "starchannel": "820836182043656272",
-    "reportchannel": "820836498660261899"
+    "welcome": "830101496892620861",
+    "cafe": "829569744067362816"
   },
   "emotes": {
-    "bookmark": "765308420327735296",
     "wave": "👋",
     "goodmorning": "🌄",
-    "goodnight": "🌛",
-    "report": "820836767409111050",
-    "star": "⭐"
+    "goodnight": "🌛"
   },
   "roles": {
-    "admin": "765234494730797096",
-    "member": "821206777982222356",
-    "reactDivider": "765296205030621254",
-    "welcome": "765304484649762827"
+    "verified": [
+      "283378393406373888",
+      "284114944243269642"
+    ],
+    "welcome": "830101559870095450"
   },
   "colors": {
     "embedColor": "#FF69B4"
