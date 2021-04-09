@@ -4,7 +4,7 @@ class cafeActions {
 	static async greetMorningOrNight(client, message) {
 		// Handle good morning and goodnight, and hello and goodbye
 		var emotions = ['<:ZeldAYAYA:619816788414431232>','<a:ZeldaYay:697396115082838167>','<a:ZeldaTwirl:697396089715818546>','<:Zelduwu:562667938289680399>','<:ZeldaHeart:650247233006206976>','<:ZeldaHeadpats:717228153596018698>','<:ToonZeldaHappy:562667543307878402>','<:PillowZelda:562667410738511872>','<a:HeartSparkle:598282264228397087>','<:HeartContainer:562667186670272523>']
-		var choice = emotions[Math.floor((Math.random() * emotions.length()))];
+		var choice = emotions[Math.floor((Math.random() * emotions.length))];
 		if (
 			message.content.toLowerCase().indexOf("good") != -1 &&
 			message.content.toLowerCase().indexOf("night") != -1 &&
