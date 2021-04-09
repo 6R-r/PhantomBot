@@ -10,21 +10,21 @@ class cafeActions {
 			message.content.toLowerCase().indexOf("night") != -1 &&
 			message.content.toLowerCase().indexOf("gorls") != -1
 		) {
-			await message.channel.send(`Goodnight <@${message.author.id}>! ${choice}`);
-			return await message.react(config.emotes.goodnight);
+			await message.react(config.emotes.goodnight);
+			return await message.channel.send(`Goodnight <@${message.author.id}>! ${choice}`);
 		} else if (
 			message.content.toLowerCase().indexOf("good") != -1 &&
 			message.content.toLowerCase().indexOf("morning") != -1 &&
 			message.content.toLowerCase().indexOf("gorls") != -1
 		) {
-			await message.channel.send(`Good morning <@${message.author.id}>! ${choice}`);
-			return await message.react(config.emotes.goodmorning);
+			await message.react(config.emotes.goodmorning);
+			return await message.channel.send(`Good morning <@${message.author.id}>! ${choice}`);
 		} else if (
 			message.content.toLowerCase().indexOf("hello") != -1 &&
 			message.content.toLowerCase().indexOf("gorls") != -1
 		) {
-			await message.channel.send(`Hello <@${message.author.id}>! ${choice}`);
-			return await message.react(config.emotes.wave);
+			await message.react(config.emotes.wave);
+			return await message.channel.send(`Hello <@${message.author.id}>! ${choice}`);
 		}
 	}
 
