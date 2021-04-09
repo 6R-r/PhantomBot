@@ -3,6 +3,7 @@ const Afks = require('../databaseFiles/connect.js').Afks;
 const config = require('../config.json');
 
 module.exports.execute = async (client, message, args) => {
+  await message.delete();
 
   const sender = message.author;
 
