@@ -1,5 +1,4 @@
 const config = require('../config.json');
-const afkAction = require('./afkMessageCheckAction');
 
 class cafeActions {
 	static async greetMorningOrNight(client, message) {
@@ -24,7 +23,6 @@ class cafeActions {
 				message.content.toLowerCase().indexOf("gorls") != -1
 			)
 		) {
-			afkAction.checkIfUserIsAFK(client, message);
 			return await message.react(config.emotes.goodmorning);
 		} else if (
 			message.content.toLowerCase().indexOf("hello") != -1 &&
@@ -33,7 +31,6 @@ class cafeActions {
 				message.content.toLowerCase().indexOf("gorls") != -1
 			)
 		) {
-			afkAction.checkIfUserIsAFK(client, message);
 			return await message.react(config.emotes.wave);
 		}
 	}

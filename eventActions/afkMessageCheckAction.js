@@ -23,30 +23,6 @@ class afkMessageCheckAction {
       return;
     }
 
-    if (
-      message.content.toLowerCase().indexOf('good') != -1 &&
-      message.content.toLowerCase().indexOf('morning') != -1 &&
-			(
-				message.content.toLowerCase().indexOf("qts") != -1 ||
-				message.content.toLowerCase().indexOf("gorls") != -1
-			)
-    ) {
-      const sender = message.author;
-
-      await Afks.deleteOne({user: sender.id});
-
-      await message.channel
-        .send(
-          `Welcome back, ${
-            message.member.nickname
-              ? message.member.nickname
-              : message.author.username
-          }!`
-        )
-        .then((delmessage) => delmessage.delete({ timeout: 5000 }))
-        .catch('Error sending message.');
-    }
-
 		const noLongerAFKMessage = new Discord.MessageEmbed()
 			.setTitle(`You are currently AFK, ${message.member.nickname ? message.member.nickname : message.author.username}`)
 			.addField('Are you back?', 'Run the `.afk` command again in the server.')
