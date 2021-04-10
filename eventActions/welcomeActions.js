@@ -8,7 +8,7 @@ class welcomeActions {
         newMember.guild.channels.cache
           .get(config.channels.welcome)
           .send(
-            `🎉 **A new member has arrived!** 🎉\nPlease welcome <@${newMember.id}> to the **Zeldacord** <@&${config.roles.welcome}> team!\nWe're so glad you've joined. <:ZeldaHeart:650247233006206976>`
+            `🎉 **A new member has arrived!** 🎉\nPlease welcome <@${newMember.id}> to the **Zeldacord**!\nWe're so glad you've joined. <:ZeldaHeart:650247233006206976>`
           )
           .then((message) => {
             message.react(config.emotes.wave);
