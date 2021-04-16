@@ -25,8 +25,8 @@ module.exports = async (client, message) => {
   }
 
   const command =
-    message.content.startsWith(config.prefix) &&
-    args.shift().slice(config.prefix.length);
+    message.content.startsWith(prefix) &&
+    args.shift().slice(prefix.length);
 
   if (command) {
     const commandfile =
