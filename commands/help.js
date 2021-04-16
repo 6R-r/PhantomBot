@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 const config = require('../config.json');
 const fs = require('fs');
-let prefix = config.prefix;
+const Prefixes = require('../databaseFiles/connect').Prefixes;
 
 function capitalizeFLetter(input) {
   return input[0].toUpperCase() + input.slice(1);
@@ -12,6 +12,14 @@ module.exports.execute = async (client, message, args) => {
   var modules = config.modules;
   var cleanmodules = modules.map((v) => v.toLowerCase());
   let commandNames = [];
+
+  let prefix;
+  try {
+    prefix = await Prefixes.findOne({'guild': message.guild.id});
+    prefix = prefix.prefix;
+  } catch {
+    prefix = 'z!';
+  }
 
   if (!args || args.length === 0) {
     var modulelist = '';

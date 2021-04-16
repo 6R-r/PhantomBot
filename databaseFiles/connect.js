@@ -11,5 +11,6 @@ const client = new MongoClient(
 client.connect();
 
 // Make sure MongoDB can be accessed outside of this file
+module.exports.Prefixes = client.db(config.mongodbDatabase).collection('Prefixes');
 module.exports.Afks = client.db(config.mongodbDatabase).collection('Afks');
 module.exports.Stars = client.db(config.mongodbDatabase).collection('Stars');

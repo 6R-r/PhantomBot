@@ -2,10 +2,20 @@ const config = require('../config.json');
 const afkAction = require('../eventActions/afkMessageCheckAction');
 const reactions = require('../eventActions/reactions');
 const cafeActions = require('../eventActions/cafeActions');
+const Prefixes = require('../databaseFiles/connect').Prefixes;
 
 module.exports = async (client, message) => {
   if (!message.guild || message.author.bot) return;
   const args = message.content.split(/\s+/g); // Return the message content and split the prefix.
+  var prefix;
+
+  try {
+    prefix = await Prefixes.findOne({'guild': message.guild.id});
+    prefix = prefix.prefix; // Get the 'prefix' string from the JSON object if found. If not will return error for trying to get null
+  } catch {
+    prefix = 'z!';
+  }
+
   const command =
     message.content.startsWith(config.prefix) &&
     args.shift().slice(config.prefix.length);
