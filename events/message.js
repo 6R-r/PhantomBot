@@ -16,6 +16,14 @@ module.exports = async (client, message) => {
     prefix = 'z!';
   }
 
+  if (args[0] === `<@!${client.user.id}>` || message.content.startsWith(`<@!${client.user.id}>`)) {
+    prefix = `<@!${client.user.id}>`;
+    if (args[0] === prefix) {
+      args.shift();
+      args[0] = prefix + args[0]; // Dirty fix
+    }
+  }
+
   const command =
     message.content.startsWith(config.prefix) &&
     args.shift().slice(config.prefix.length);
@@ -25,7 +33,24 @@ module.exports = async (client, message) => {
       client.commands.get(command) ||
       client.commands.get(client.aliases.get(command));
 
-    if (commandfile) {
+    if (commandfile.config.requires) {
+      var allowed = false;
+
+      for (i = 0; i < commandfile.config.requires.length; i++) {
+        if (message.member.hasPermission(commandfile.config.requires[i])) {
+          allowed = true;
+          break;
+        }
+      }
+
+      if (allowed === false) {
+        var requires = commandfile.config.requires.join('` `');
+
+        return await message.channel.send(`:x: You do not have the permissions to use that command. Requires: ${requires}.`)
+      }
+    }
+
+    if (commandfile && (allowed === undefined || allowed === true)) {
       commandfile.execute(client, message, args); // Execute found command
     }
   }
