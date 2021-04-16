@@ -32,5 +32,5 @@ module.exports.config = {
   module: 'Settings',
   description: 'Change the prefix for the bot.',
   usage: ['prefix <new prefix>'],
-  requires: [0x000000020]
+  requires: [32]
 };
