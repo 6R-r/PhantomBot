@@ -53,7 +53,7 @@ module.exports = async (client, message) => {
       if (allowed === false) {
         var requires = commandfile.config.requires.join('` `');
 
-        return await message.channel.send(`:x: You do not have the permissions to use that command. Requires: ${getPermName(requires)}.`)
+        return await message.channel.send(`:x: You do not have the permissions to use that command. Requires: \`${getPermName(requires)}\`.`)
       }
     }
 
