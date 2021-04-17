@@ -3,6 +3,13 @@ const afkAction = require('../eventActions/afkMessageCheckAction');
 const reactions = require('../eventActions/reactions');
 const cafeActions = require('../eventActions/cafeActions');
 const Prefixes = require('../databaseFiles/connect').Prefixes;
+const Discord = require('discord.js');
+
+function getPermName(bitfield = 0) {
+  for (let key in Discord.Permissions.FLAGS) 
+    if (Discord.Permissions.FLAGS[key] == bitfield) return key;
+  return null;
+}
 
 module.exports = async (client, message) => {
   if (!message.guild || message.author.bot) return;
@@ -46,7 +53,7 @@ module.exports = async (client, message) => {
       if (allowed === false) {
         var requires = commandfile.config.requires.join('` `');
 
-        return await message.channel.send(`:x: You do not have the permissions to use that command. Requires: ${requires}.`)
+        return await message.channel.send(`:x: You do not have the permissions to use that command. Requires: ${getPermName(requires)}.`)
       }
     }
 
