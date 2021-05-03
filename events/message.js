@@ -36,6 +36,8 @@ module.exports = async (client, message) => {
     args.shift().slice(prefix.length);
 
   if (command) {
+    message.channel.startTyping();
+    
     const commandfile =
       client.commands.get(command) ||
       client.commands.get(client.aliases.get(command));
@@ -58,8 +60,34 @@ module.exports = async (client, message) => {
     }
 
     if (commandfile && (allowed === undefined || allowed === true)) {
-      commandfile.execute(client, message, args); // Execute found command
+      var total = 0;
+
+      var stats = await BotStats.findOne({
+        guild: message.guild.id
+      });
+
+      if (stats) {
+        total = stats.total;
+      }
+
+      total = total + 1;
+
+      await BotStats.updateOne(
+        { bot: client.user.id },
+        { $set: {
+            bot: client.user.id,
+            total: total,
+            }
+        },
+        {
+            upsert: true
+        }
+      );
+      
+      await commandfile.execute(client, message, args); // Execute found command
     }
+    
+    message.channel.stopTyping();
   }
   
   // Handle greetings
