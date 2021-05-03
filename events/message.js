@@ -4,6 +4,7 @@ const reactions = require('../eventActions/reactions');
 const cafeActions = require('../eventActions/cafeActions');
 const Prefixes = require('../databaseFiles/connect').Prefixes;
 const Discord = require('discord.js');
+const BotStats = require('../databaseFiles/connect').BotStats;
 
 function getPermName(bitfield = 0) {
   for (let key in Discord.Permissions.FLAGS) 
