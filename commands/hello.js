@@ -1,5 +1,5 @@
 module.exports.execute = async (client, message) => {
-  return await message.channel.send('Hey there!');
+  return await message.channel.send('Hello there!');
 };
 
 module.exports.config = {
