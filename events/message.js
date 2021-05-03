@@ -74,9 +74,9 @@ module.exports = async (client, message) => {
       total = total + 1;
 
       await BotStats.updateOne(
-        { bot: client.user.id },
+        { guild: message.guild.id },
         { $set: {
-            bot: client.user.id,
+            guild: message.guild.id,
             total: total,
             }
         },
