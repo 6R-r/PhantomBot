@@ -43,52 +43,54 @@ module.exports = async (client, message) => {
       client.commands.get(command) ||
       client.commands.get(client.aliases.get(command));
 
-    if (commandfile.config.requires) {
-      var allowed = false;
+    if (commandfile) {
+      if (commandfile.config.requires) {
+        var allowed = false;
 
-      for (i = 0; i < commandfile.config.requires.length; i++) {
-        if (message.member.hasPermission(commandfile.config.requires[i])) {
-          allowed = true;
-          break;
+        for (i = 0; i < commandfile.config.requires.length; i++) {
+          if (message.member.hasPermission(commandfile.config.requires[i])) {
+            allowed = true;
+            break;
+          }
+        }
+
+        if (allowed === false) {
+          var requires = commandfile.config.requires.join('` `');
+
+          return await message.channel.send(`:x: You do not have the permissions to use that command. Requires: \`${getPermName(requires)}\`.`)
         }
       }
 
-      if (allowed === false) {
-        var requires = commandfile.config.requires.join('` `');
+      if (allowed === undefined || allowed === true) {
+        var total = 0;
 
-        return await message.channel.send(`:x: You do not have the permissions to use that command. Requires: \`${getPermName(requires)}\`.`)
-      }
-    }
+        var stats = await BotStats.findOne({
+          guild: message.guild.id
+        });
 
-    if (commandfile && (allowed === undefined || allowed === true)) {
-      var total = 0;
-
-      var stats = await BotStats.findOne({
-        guild: message.guild.id
-      });
-
-      if (stats && parseInt(stats.total) !== NaN) {
-        total = parseInt(stats.total);
-      }
-
-      total = total + 1;
-
-      await BotStats.updateOne(
-        { guild: message.guild.id },
-        { $set: {
-            guild: message.guild.id,
-            total: total,
-            }
-        },
-        {
-            upsert: true
+        if (stats && isNaN(parseInt(stats.total)) !== true) {
+          total = parseInt(stats.total);
         }
-      );
-      
-      await commandfile.execute(client, message, args); // Execute found command
+
+        total = total + 1;
+
+        await BotStats.updateOne(
+          { guild: message.guild.id },
+          { $set: {
+              guild: message.guild.id,
+              total: total,
+              }
+          },
+          {
+              upsert: true
+          }
+        );
+
+        await commandfile.execute(client, message, args); // Execute found command
+      }
+
+      message.channel.stopTyping();
     }
-    
-    message.channel.stopTyping();
   }
   
   // Handle greetings
