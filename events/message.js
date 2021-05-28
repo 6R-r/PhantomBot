@@ -4,6 +4,7 @@ const reactions = require('../eventActions/reactions');
 const cafeActions = require('../eventActions/cafeActions');
 const Prefixes = require('../databaseFiles/connect').Prefixes;
 const Discord = require('discord.js');
+const BotStats = require('../databaseFiles/connect').BotStats;
 
 function getPermName(bitfield = 0) {
   for (let key in Discord.Permissions.FLAGS) 
@@ -35,30 +36,63 @@ module.exports = async (client, message) => {
     message.content.startsWith(prefix) &&
     args.shift().slice(prefix.length);
 
-  if (command) {
+  if (command) {    
     const commandfile =
       client.commands.get(command) ||
       client.commands.get(client.aliases.get(command));
 
-    if (commandfile.config.requires) {
-      var allowed = false;
+    if (commandfile) {
+      try {
+        message.channel.startTyping();
+        if (commandfile.config.requires) {
+          var allowed = false;
 
-      for (i = 0; i < commandfile.config.requires.length; i++) {
-        if (message.member.hasPermission(commandfile.config.requires[i])) {
-          allowed = true;
-          break;
+          for (i = 0; i < commandfile.config.requires.length; i++) {
+            if (message.member.hasPermission(commandfile.config.requires[i])) {
+              allowed = true;
+              break;
+            }
+          }
+
+          if (allowed === false) {
+            var requires = commandfile.config.requires.join('` `');
+
+            return await message.channel.send(`:x: You do not have the permissions to use that command. Requires: \`${getPermName(requires)}\`.`)
+          }
         }
+
+        if (allowed === undefined || allowed === true) {
+          var total = 0;
+
+          var stats = await BotStats.findOne({
+            guild: message.guild.id
+          });
+
+          if (stats && isNaN(parseInt(stats.total)) !== true) {
+            total = parseInt(stats.total);
+          }
+
+          total = total + 1;
+
+          await BotStats.updateOne(
+            { guild: message.guild.id },
+            { $set: {
+                guild: message.guild.id,
+                total: total,
+                }
+            },
+            {
+                upsert: true
+            }
+          );
+
+          await commandfile.execute(client, message, args); // Execute found command
+        }
+      } catch(err) {
+        console.error(err);
+      } finally {
+        message.channel.stopTyping();
       }
-
-      if (allowed === false) {
-        var requires = commandfile.config.requires.join('` `');
-
-        return await message.channel.send(`:x: You do not have the permissions to use that command. Requires: \`${getPermName(requires)}\`.`)
-      }
-    }
-
-    if (commandfile && (allowed === undefined || allowed === true)) {
-      commandfile.execute(client, message, args); // Execute found command
     }
   }
   
