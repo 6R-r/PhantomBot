@@ -56,7 +56,7 @@ class bookmarkActions {
       await user.send(bookmarkMessage);
 
       if (attachments.length > 0) {
-        attachments.forEach((image) => {
+        attachments.forEach(async (image) => {
           let imageMessage = new Discord.MessageEmbed()
             .setImage(image);
 
