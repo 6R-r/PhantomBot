@@ -7,6 +7,7 @@ class bookmarkActions {
       var username = reaction.message.author.username;
       var message = reaction.message.content;
       var avatar = reaction.message.author.displayAvatarURL();
+      var attachments = [];
       var link = `https://discordapp.com/channels/${reaction.message.guild.id}/${reaction.message.channel.id}/${reaction.message.id}`;
 
       var att = (reaction.message.attachments);
@@ -16,10 +17,13 @@ class bookmarkActions {
         .setAuthor(username, avatar)
         .setDescription(message + "\n\n**[Click to jump to message.](" + link + ")**");
 
+      if (att.array()) {
+        attachments.push.apply(attachments, att.array());
+      }
+
       reaction.message.embeds.forEach((embed) => {
-        console.log(embed)
         if (embed.description) bookmarkMessage.addField('Embed Description', embed.description);
-        if (embed.image) bookmarkMessage.setImage(embed.image.url);
+        if (embed.image) attachments.push.apply(embed.image.url);
         if (embed.fields.length > 0) {
           var fields = '';
 
@@ -31,11 +35,7 @@ class bookmarkActions {
         }
       });
       
-      if (att.array()[0]) {
-        await user.send(bookmarkMessage, {files: att.array()});
-      } else {
-        await user.send(bookmarkMessage);
-      }
+      await user.send(embed=bookmarkMessage, {files: attachments});
       
       return true;
     }
