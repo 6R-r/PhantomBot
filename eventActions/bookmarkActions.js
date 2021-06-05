@@ -41,7 +41,6 @@ class bookmarkActions {
   }
 
   static async removeBookmark(client, user, reaction) {
-    console.log(user);
   }
 }
 
