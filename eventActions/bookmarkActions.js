@@ -20,13 +20,23 @@ class bookmarkActions {
 
       if (att.array()) {
         att.array().forEach((image) => {
-          attachments.push(path.parse(image).base);
+          var image_url = path.parse(image.url);
+
+          image_url = `${image_url.dir}/${image_url.name}/${image_url.split(/[^A-Za-z]/)[0]}`;
+
+          attachments.push(image_url);
         });
       }
 
       reaction.message.embeds.forEach((embed) => {
         if (embed.description) bookmarkMessage.addField('Embed Description', embed.description);
-        if (embed.image) attachments.push(path.parse(embed.image.url).base);
+        if (embed.image) {
+          var image_url = path.parse(embed.image.url);
+
+          image_url = `${image_url.dir}/${image_url.name}/${image_url.split(/[^A-Za-z]/)[0]}`;
+
+          attachments.push(image);
+        }
         if (embed.fields.length > 0) {
           var fields = '';
 
