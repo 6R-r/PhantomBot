@@ -22,7 +22,7 @@ class bookmarkActions {
         att.array().forEach((image) => {
           var image_url = path.parse(image.url);
 
-          image_url = `${image_url.dir}/${image_url.name}/${image_url.split(/[^A-Za-z]/)[0]}`;
+          image_url = `${image_url.dir}/${image_url.name}/${image_url.ext.split(/[^A-Za-z]/)[0]}`;
 
           attachments.push(image_url);
         });
