@@ -47,8 +47,22 @@ class bookmarkActions {
           bookmarkMessage.addField('Embed Fields', fields);
         }
       });
+
+      if (attachments.length > 0) {
+        bookmarkMessage.setImage(attachments[0]);
+        attachments.shift();
+      }
       
-      await user.send({embed: bookmarkMessage, files: attachments});
+      await user.send(bookmarkMessage);
+
+      if (attachments.length > 0) {
+        attachments.forEach((image) => {
+          let imageMessage = new Discord.MessageEmbed()
+            .setImage(image);
+
+          await user.send(imageMessage);
+        });
+      }
       
       return true;
     }
