@@ -35,7 +35,7 @@ class bookmarkActions {
         }
       });
       
-      await user.send({embed=bookmarkMessage, files: attachments});
+      await user.send({embed: bookmarkMessage, files: attachments});
       
       return true;
     }
