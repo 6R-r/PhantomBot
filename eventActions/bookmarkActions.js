@@ -39,6 +39,10 @@ class bookmarkActions {
       return true;
     }
   }
+
+  static async removeBookmark(client, user, reaction) {
+    console.log(user);
+  }
 }
 
 module.exports = bookmarkActions;
