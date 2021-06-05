@@ -23,7 +23,7 @@ class bookmarkActions {
 
       reaction.message.embeds.forEach((embed) => {
         if (embed.description) bookmarkMessage.addField('Embed Description', embed.description);
-        if (embed.image) attachments.push.apply(embed.image.url);
+        if (embed.image) attachments.push(embed.image.url);
         if (embed.fields.length > 0) {
           var fields = '';
 
