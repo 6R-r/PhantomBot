@@ -16,11 +16,6 @@ class bookmarkActions {
         .setAuthor(username, avatar)
         .setDescription(message + "\n\n**[Click to jump to message.](" + link + ")**");
 
-      if (att.array()[0]) {
-        att = att.array()[0].url;
-        bookmarkMessage.setImage(att);
-      }
-
       reaction.message.embeds.forEach((embed) => {
         if (embed.description) bookmarkMessage.addField('Embed Description', embed.description);
         if (embed.image) bookmarkMessage.setImage(embed.image.url);
@@ -35,7 +30,12 @@ class bookmarkActions {
         }
       });
       
-      await user.send(bookmarkMessage);
+      if (att.array()[0]) {
+        await user.send(bookmarkMessage, {files: att.array()});
+      } else {
+        await user.send(bookmarkMessage);
+      }
+      
       return true;
     }
   }
