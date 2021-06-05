@@ -58,6 +58,7 @@ class bookmarkActions {
       if (attachments.length > 0) {
         attachments.forEach(async (image) => {
           let imageMessage = new Discord.MessageEmbed()
+            .setColor(config.colors.embedColor)
             .setImage(image);
 
           await user.send(imageMessage);
