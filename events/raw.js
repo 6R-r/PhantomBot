@@ -1,5 +1,6 @@
 module.exports = (client, packet) => {
 	if (!['MESSAGE_REACTION_ADD', 'MESSAGE_REACTION_REMOVE'].includes(packet.t)) return;
+	console.log(packet.d.channel_id);
 	const channel = client.channels.cache.get(packet.d.channel_id);
 	if (channel.messages.cache.has(packet.d.message_id)) return;
 	channel.messages.fetch(packet.d.message_id).then(message => {
