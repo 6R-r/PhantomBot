@@ -35,7 +35,7 @@ class bookmarkActions {
 
           image_url = `${image_url.dir}/${image_url.name}/${image_url.ext.split(/[^A-Za-z]/)[0]}`;
 
-          attachments.push(image);
+          attachments.push(image_url);
         }
         if (embed.fields.length > 0) {
           var fields = '';
