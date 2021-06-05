@@ -20,6 +20,12 @@ class bookmarkActions {
         att = att.array()[0].url;
         bookmarkMessage.setImage(att);
       }
+
+      message.embeds.forEach((embed) => {
+        if (embed.description) bookmarkMessage.addField('Embed Description', embed.description);
+        if (embed.image) bookmarkMessage.setImage(embed.image.url);
+        if (embed.fields.length > 0) console.log(embed.fields);
+      });
       
       await user.send(bookmarkMessage);
       return true;
