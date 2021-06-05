@@ -48,7 +48,9 @@ class bookmarkActions {
         }
       });
       
-      await user.send({embed: bookmarkMessage, files: attachments});
+      await user.send(bookmarkMessage);
+
+      if (attachments.length > 0) await user.send({files: attachments});
       
       return true;
     }
