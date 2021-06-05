@@ -1,5 +1,6 @@
 const Discord = require('discord.js');
 const config = require('../config.json');
+const path = require('path');
 
 class bookmarkActions {
   static async addBookmark(client, user, reaction) {
@@ -18,12 +19,14 @@ class bookmarkActions {
         .setDescription(message + "\n\n**[Click to jump to message.](" + link + ")**");
 
       if (att.array()) {
-        attachments.push.apply(attachments, att.array());
+        att.array().forEach((image) => {
+          attachments.push(path.parse(image).base);
+        });
       }
 
       reaction.message.embeds.forEach((embed) => {
         if (embed.description) bookmarkMessage.addField('Embed Description', embed.description);
-        if (embed.image) attachments.push(embed.image.url);
+        if (embed.image) attachments.push(path.parse(embed.image.url).base);
         if (embed.fields.length > 0) {
           var fields = '';
 
