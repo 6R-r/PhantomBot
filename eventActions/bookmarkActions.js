@@ -24,7 +24,15 @@ class bookmarkActions {
       reaction.message.embeds.forEach((embed) => {
         if (embed.description) bookmarkMessage.addField('Embed Description', embed.description);
         if (embed.image) bookmarkMessage.setImage(embed.image.url);
-        if (embed.fields.length > 0) console.log(embed.fields);
+        if (embed.fields.length > 0) {
+          var fields = '';
+
+          embed.fields.forEach((field) => {
+            fields = `${fields}\n**${field.name}**\n${field.value}`
+          });
+
+          bookmarkMessage.addField('Embed Fields', fields);
+        }
       });
       
       await user.send(bookmarkMessage);
