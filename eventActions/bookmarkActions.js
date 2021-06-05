@@ -28,7 +28,7 @@ class bookmarkActions {
           var fields = '';
 
           embed.fields.forEach((field) => {
-            fields = `${fields}\n**${field.name}**\n${field.value}`
+            fields = `${fields}\n${field.name}\n\`\`\`${field.value}\`\`\``
           });
 
           bookmarkMessage.addField('Embed Fields', fields);
