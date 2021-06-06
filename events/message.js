@@ -44,6 +44,7 @@ module.exports = async (client, message) => {
     if (commandfile) {
       try {
         message.channel.startTyping();
+        await message.channel.send(`> :warning: We are transitioning to using Discord\'s slash commands. Please try \`/${command}\`; commands with prefixes in this bot will be phased out soon.`)
         if (commandfile.config.requires) {
           var allowed = false;
 
