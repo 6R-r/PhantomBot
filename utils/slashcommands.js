@@ -1,5 +1,3 @@
-var guildId = '791366170611679272'
-
 module.exports.create = async function create (client) {
   const getApp = (guildId) => {
 		const app = client.api.applications(client.user.id)
@@ -9,14 +7,14 @@ module.exports.create = async function create (client) {
 		return app
 	}
 
-	await getApp(guildId).commands.post({
+	await getApp().commands.post({
 		data: {
 			name: 'hello',
 			description: 'Says hello. Use to test if bot is online.'
 		},
 	})
 
-	await getApp(guildId).commands.post({
+	await getApp().commands.post({
 		data: {
 			name: 'afk',
 			description: 'I will mark you as being away. When people tag you, they will be notified that you are not present.',
@@ -31,14 +29,14 @@ module.exports.create = async function create (client) {
 		}
 	})
 
-	await getApp(guildId).commands.post({
+	await getApp().commands.post({
 		data: {
 			name: 'botinfo',
 			description: 'Learn more about Phantom.'
 		},
 	})
 
-	await getApp(guildId).commands.post({
+	await getApp().commands.post({
 		data: {
 			name: 'choose',
 			description: 'I will choose one of your options at random.',
@@ -53,21 +51,21 @@ module.exports.create = async function create (client) {
 		},
 	})
 
-	await getApp(guildId).commands.post({
+	await getApp().commands.post({
 		data: {
 			name: 'coffee',
 			description: 'I will choose either ☕ or ⚰️. (My version of Russian Roulette)'
 		},
 	})
 
-	await getApp(guildId).commands.post({
+	await getApp().commands.post({
 		data: {
 			name: 'feedback',
 			description: 'Links to a very short Google Form to help us improve the bot.'
 		},
 	})
 
-	await getApp(guildId).commands.post({
+	await getApp().commands.post({
 		data: {
 			name: 'hug',
 			description: 'Hugs you, or a user if one is specified.',
@@ -82,7 +80,7 @@ module.exports.create = async function create (client) {
 		},
 	})
 
-	await getApp(guildId).commands.post({
+	await getApp().commands.post({
 		data: {
 			name: 'jail',
 			description: 'Jails a specified user.',
@@ -97,7 +95,7 @@ module.exports.create = async function create (client) {
 		},
 	})
 
-	await getApp(guildId).commands.post({
+	await getApp().commands.post({
 		data: {
 			name: 'shoot',
 			description: 'Shoots a specified user.',
@@ -112,7 +110,7 @@ module.exports.create = async function create (client) {
 		},
 	})
 
-	await getApp(guildId).commands.post({
+	await getApp().commands.post({
 		data: {
 			name: 'summon',
 			description: 'Summons a specified user.',
@@ -127,7 +125,7 @@ module.exports.create = async function create (client) {
 		},
 	})
 
-	await getApp(guildId).commands.post({
+	await getApp().commands.post({
 		data: {
 			name: 'tea',
 			description: 'I will choose either 🍵 or 🌳. (Tea-drinker\'s version of the coffee command)'
